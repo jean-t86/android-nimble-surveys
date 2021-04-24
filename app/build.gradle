@@ -1,0 +1,82 @@
+plugins {
+    id 'com.android.application'
+    id 'kotlin-android'
+    id 'kotlin-android-extensions'
+    id 'kotlin-kapt'
+}
+
+android {
+    signingConfigs {
+        config {
+            keyAlias 'key0'
+            keyPassword 'nimble'
+            storeFile file('../surveys.jks')
+            storePassword 'nimble'
+        }
+    }
+    compileSdk 30
+    testOptions.unitTests.includeAndroidResources = true
+    buildToolsVersion "30.0.3"
+
+    defaultConfig {
+        applicationId "au.com.broscience.nimblesurveys"
+        minSdk 21
+        targetSdk 30
+        versionCode 1
+        versionName "1.0"
+
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+            signingConfig signingConfigs.config
+        }
+    }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+    kotlinOptions {
+        jvmTarget = '1.8'
+    }
+    dataBinding {
+        enabled = true
+    }
+}
+
+dependencies {
+    implementation fileTree(include: ['*.jar'], dir: 'libs')
+    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
+    implementation "com.android.support:appcompat-v7:$support_version"
+    implementation "com.android.support:exifinterface:$support_version"
+    implementation "com.android.support:recyclerview-v7:$support_version"
+    implementation "com.android.support.constraint:constraint-layout:$constraint_layout_version"
+    implementation "android.arch.paging:runtime:$paging_version"
+    implementation "android.arch.lifecycle:extensions:$lifecycle_version"
+    // Retrofit
+    implementation "com.squareup.retrofit2:retrofit:$retrofit_version"
+    implementation "com.squareup.retrofit2:converter-gson:$retrofit_version"
+    // Convenience libs
+    implementation "com.jakewharton.timber:timber:$timber_version"
+    // Dagger 2 DI
+    implementation "com.google.dagger:dagger:$dagger_version"
+    implementation "com.google.dagger:dagger-android:$dagger_version"
+    implementation 'com.android.support.constraint:constraint-layout:1.1.3'
+    kapt "com.google.dagger:dagger-compiler:$dagger_version"
+    kapt "com.google.dagger:dagger-android-processor:$dagger_version"
+    //Image
+    implementation "com.squareup.picasso:picasso:$picasso_version"
+    // Dots indicator
+    implementation "com.kingfisherphuoc:easy-recyclerview-indicator:$dots_indicator_version"
+    implementation "com.android.support.test.espresso:espresso-idling-resource:$espresso_idling_version"
+    testImplementation "junit:junit:$junit_version"
+    testImplementation "org.robolectric:robolectric:$roboelectric_version"
+    testImplementation "org.mockito:mockito-core:$mockito_version"
+    androidTestImplementation "com.android.support.test:runner:$test_runner_version"
+    androidTestImplementation "com.android.support.test.espresso:espresso-core:$espresso_version"
+    androidTestImplementation "com.android.support.test:rules:$test_rules_version"
+    androidTestImplementation "org.mockito:mockito-android:$mockito_android_version"
+}

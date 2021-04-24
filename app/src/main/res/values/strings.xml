@@ -1,0 +1,9 @@
+<resources>
+    <string name="app_name">Nimble Surveys</string>
+    <string name="toolbar_title">SURVEYS</string>
+    <string name="action_refresh">Refresh</string>
+    <string name="survey_cover_image">Survey cover</string>
+    <string name="sample_text">Title</string>
+    <string name="take_the_survey">Take the survey</string>
+    <string name="network_error">An error occurred. Please try again later.</string>
+</resources>
